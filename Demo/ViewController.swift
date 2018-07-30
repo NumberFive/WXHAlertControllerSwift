@@ -13,8 +13,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let container = WXHAlertContainer()
-        let alert = WXHAlertController()
+        let container = WXHAlertView()
+        let alert = WXHAlertController(container)
+        
+        alert.container = container
         
     }
 
@@ -22,4 +24,3 @@ class ViewController: UIViewController {
 
 
 }
-

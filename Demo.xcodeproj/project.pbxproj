@@ -15,7 +15,9 @@
 		E868170C210AC76700C2A055 /* WXHAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868170B210AC76700C2A055 /* WXHAlertController.swift */; };
 		E868170E210AC79500C2A055 /* WXHAlertContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868170D210AC79500C2A055 /* WXHAlertContainerProtocol.swift */; };
 		E8681710210ACDA400C2A055 /* WXHAlertMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E868170F210ACDA400C2A055 /* WXHAlertMaskView.swift */; };
-		E8681712210ACEBC00C2A055 /* WXHAlertContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8681711210ACEBC00C2A055 /* WXHAlertContainer.swift */; };
+		E8C18AFD210F1B1E002CE017 /* WXHAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C18AFC210F1B1E002CE017 /* WXHAlertView.swift */; };
+		E8C18AFF210F1B28002CE017 /* WXHPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C18AFE210F1B28002CE017 /* WXHPopoverView.swift */; };
+		E8C18B01210F1B32002CE017 /* WXHActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C18B00210F1B32002CE017 /* WXHActionSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +31,9 @@
 		E868170B210AC76700C2A055 /* WXHAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHAlertController.swift; sourceTree = "<group>"; };
 		E868170D210AC79500C2A055 /* WXHAlertContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHAlertContainerProtocol.swift; sourceTree = "<group>"; };
 		E868170F210ACDA400C2A055 /* WXHAlertMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHAlertMaskView.swift; sourceTree = "<group>"; };
-		E8681711210ACEBC00C2A055 /* WXHAlertContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHAlertContainer.swift; sourceTree = "<group>"; };
+		E8C18AFC210F1B1E002CE017 /* WXHAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHAlertView.swift; sourceTree = "<group>"; };
+		E8C18AFE210F1B28002CE017 /* WXHPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHPopoverView.swift; sourceTree = "<group>"; };
+		E8C18B00210F1B32002CE017 /* WXHActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXHActionSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +82,10 @@
 			children = (
 				E868170B210AC76700C2A055 /* WXHAlertController.swift */,
 				E868170F210ACDA400C2A055 /* WXHAlertMaskView.swift */,
-				E8681711210ACEBC00C2A055 /* WXHAlertContainer.swift */,
 				E868170D210AC79500C2A055 /* WXHAlertContainerProtocol.swift */,
+				E8C18AFC210F1B1E002CE017 /* WXHAlertView.swift */,
+				E8C18AFE210F1B28002CE017 /* WXHPopoverView.swift */,
+				E8C18B00210F1B32002CE017 /* WXHActionSheetView.swift */,
 			);
 			path = WXHAlertController;
 			sourceTree = "<group>";
@@ -157,8 +163,10 @@
 			files = (
 				E86816FB210AC6A800C2A055 /* ViewController.swift in Sources */,
 				E8681710210ACDA400C2A055 /* WXHAlertMaskView.swift in Sources */,
-				E8681712210ACEBC00C2A055 /* WXHAlertContainer.swift in Sources */,
 				E86816F9210AC6A800C2A055 /* AppDelegate.swift in Sources */,
+				E8C18AFF210F1B28002CE017 /* WXHPopoverView.swift in Sources */,
+				E8C18B01210F1B32002CE017 /* WXHActionSheetView.swift in Sources */,
+				E8C18AFD210F1B1E002CE017 /* WXHAlertView.swift in Sources */,
 				E868170E210AC79500C2A055 /* WXHAlertContainerProtocol.swift in Sources */,
 				E868170C210AC76700C2A055 /* WXHAlertController.swift in Sources */,
 			);

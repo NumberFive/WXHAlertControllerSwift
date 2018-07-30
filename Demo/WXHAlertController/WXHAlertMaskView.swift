@@ -14,12 +14,12 @@ enum WXHAlertMaskViewType: Int {
     case blur
 }
 
-protocol WXHAlertMaskViewTypeDelegate: class {
+protocol WXHAlertMaskViewDelegate: class {
     func maskViewDidTap()
 }
 class WXHAlertMaskView: UIView {
     
-    weak var delegate: WXHAlertMaskViewTypeDelegate?
+    weak var delegate: WXHAlertMaskViewDelegate?
     var type : WXHAlertMaskViewType = .color
     var clickedIndex = 0
     var _visualEffectView: UIVisualEffectView?
@@ -55,7 +55,7 @@ class WXHAlertMaskView: UIView {
         return animation
     }()
     
-    var alertController: WXHAlertContainer?
+    var alertController: WXHAlertController?
     
     convenience init() {
         self.init()

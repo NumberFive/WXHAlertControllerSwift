@@ -7,7 +7,7 @@
 //
 
 import UIKit
-protocol WXHAlertContainerProtocol {
+protocol WXHAlertContainerProtocol where Self: UIView {
     var appearAnimation: CAAnimation? { get }
     var disappearAnimation: CAAnimation? { get }
     
