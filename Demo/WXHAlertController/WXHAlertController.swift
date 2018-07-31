@@ -10,8 +10,8 @@ import UIKit
 
 typealias WXHAlertHandler = () -> Void
 
-let WXHAlertAppearAnimationDuration = 0.15
-let WXHAlertDisappearAnimationDuration = 0.15
+let WXHAlertAppearAnimationDuration = 0.10
+let WXHAlertDisappearAnimationDuration = 0.10
 
 let WXHAlertAnimationKey = "WXHAlertAnimationKey"
 let WXHAlertAppearAanimationKey = "WXHAlertAppearAanimationKey"
@@ -35,7 +35,7 @@ class WXHAlertController: NSObject {
         get {
             var animation: CAAnimation
             if self.container?.appearAnimation == nil {
-                let animationOpacity = CABasicAnimation(keyPath: "Opacity")
+                let animationOpacity = CABasicAnimation(keyPath: "opacity")
                 animationOpacity.fromValue = 0
                 animationOpacity.toValue = 1
                 animationOpacity.duration = WXHAlertAppearAnimationDuration
@@ -47,7 +47,7 @@ class WXHAlertController: NSObject {
                 animation = self.container!.appearAnimation!
             }
             animation.delegate = self
-            animation.setValue(WXHAlertAppearAanimationKey, forKey: WXHAlertAnimationKey)
+            animation.setValue(WXHAlertAppearAanimationValue, forKey: WXHAlertAnimationKey)
             return animation
         }
     }
@@ -55,7 +55,7 @@ class WXHAlertController: NSObject {
         get {
             var animation: CAAnimation
             if self.container?.disappearAnimation == nil {
-                let animationOpacity = CABasicAnimation(keyPath: "Opacity")
+                let animationOpacity = CABasicAnimation(keyPath: "opacity")
                 animationOpacity.toValue = 0
                 animationOpacity.duration = WXHAlertAppearAnimationDuration
                 animationOpacity.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -63,10 +63,10 @@ class WXHAlertController: NSObject {
                 animationOpacity.isRemovedOnCompletion = false
                 animation = animationOpacity
             } else {
-                animation = self.container!.appearAnimation!
+                animation = self.container!.disappearAnimation!
             }
             animation.delegate = self
-            animation.setValue(WXHAlertDisappearAanimationKey, forKey: WXHAlertAnimationKey)
+            animation.setValue(WXHAlertDisappearAanimationValue, forKey: WXHAlertAnimationKey)
             return animation
         }
     }
@@ -77,7 +77,7 @@ class WXHAlertController: NSObject {
             return self.maskView.backgroundColor!
         }
         set {
-            self.maskView.backgroundColor = maskColor
+            self.maskView.backgroundColor = newValue
         }
     }
     var maskType : WXHAlertMaskViewType {
@@ -85,7 +85,7 @@ class WXHAlertController: NSObject {
             return self.maskView.type
         }
         set {
-            self.maskView.type = maskType
+            self.maskView.type = newValue
         }
     }
     private lazy var maskView: WXHAlertMaskView = {
@@ -138,20 +138,26 @@ class WXHAlertController: NSObject {
     //MARK:- Show、Dismiss
     public func show(complete: WXHAlertHandler?) {
         self.showCompleteHandler = complete
-        if !self.isShow {
-            if let view = self.container as? UIView {
-                self.view.addSubview(view)
-                self.view.insertSubview(self.maskView, belowSubview: view)
+        
+        OperationQueue.main.addOperation {
+            if !self.isShow {
+                if let view = self.container as? UIView {
+                    self.view.addSubview(view)
+                    self.view.insertSubview(self.maskView, belowSubview: view)
+                }
+                self.updateLayout()
+                
+                self.appearWithAnimation()
+                self.isShow = true
             }
-            self.updateLayout()
-            self.appearWithAnimation()
-            self.isShow = true
         }
     }
     
     public func dismiss(complete: WXHAlertHandler?) {
         self.dismissCompleteHandler = complete
-        self.disappearWithAnimation()
+        OperationQueue.main.addOperation {
+            self.disappearWithAnimation()
+        }
     }
     
     func appearWithAnimation() {
@@ -176,12 +182,11 @@ class WXHAlertController: NSObject {
     
     func didAppear() {
         self.isAppearAnimationing = false
-        self.maskView.layer.removeAnimation(forKey: WXHAlertAppearAanimationKey)
         
         if let view = self.container as? UIView {
             view.layer.removeAnimation(forKey: WXHAlertAppearAanimationKey)
         }
-        
+        self.maskView.layer.removeAnimation(forKey: WXHAlertAppearAanimationKey)
         self.showCompleteHandler?()
     }
     func didDisappear() {
@@ -212,6 +217,9 @@ extension WXHAlertController: CAAnimationDelegate {
 }
 extension WXHAlertController: WXHAlertMaskViewDelegate {
     func maskViewDidTap() {
+        if self.dismissWhenMaskViewDidTap {
+            self.dismiss(complete: nil)
+        }
         self.maskViewDidTapHandler?()
     }
 }

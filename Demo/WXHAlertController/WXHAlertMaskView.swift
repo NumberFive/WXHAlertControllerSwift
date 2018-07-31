@@ -58,7 +58,9 @@ class WXHAlertMaskView: UIView {
     var alertController: WXHAlertController?
     
     convenience init() {
-        self.init()
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        
+        self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction))
         self.addGestureRecognizer(tapGesture)

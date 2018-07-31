@@ -11,16 +11,25 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    var alert: WXHAlertController?
+    var container: WXHAlertView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        let container = WXHAlertView()
-        let alert = WXHAlertController(container)
-        
-        alert.container = container
-        
     }
 
+    @IBAction func buttonAction(_ sender: UIButton) {
 
+        let view = UIView()
+        view.backgroundColor = UIColor.brown
 
+        let container = WXHAlertView()
+        container.setContentSize(CGSize(width: 100, height: 50))
+        container.setContentView(view)
+        container.backgroundColor = UIColor.green
 
+        let alert = WXHAlertController(container)
+        alert.show(complete: nil)
+    }
 }
+
+
